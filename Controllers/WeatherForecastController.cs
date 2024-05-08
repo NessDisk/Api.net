@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.net.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
@@ -40,6 +40,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPost]
+    [Route("postweatherForecast")]
+    [Route("postweatherForecast2")]
+    [Route("[action]")]    
     public IActionResult Post(WeatherForecast weatherForecast)
     {
         ListWeatherForecast.Add(weatherForecast);
