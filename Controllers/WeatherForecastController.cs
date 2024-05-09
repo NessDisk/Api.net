@@ -36,13 +36,14 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+        _logger.LogInformation("Esto es una respuesta");  
         return ListWeatherForecast;
     }
 
     [HttpPost]
-    [Route("postweatherForecast")]
-    [Route("postweatherForecast2")]
-    [Route("[action]")]    
+    // [Route("postweatherForecast")]
+    // [Route("postweatherForecast2")]
+    // [Route("[action]")]    
     public IActionResult Post(WeatherForecast weatherForecast)
     {
         ListWeatherForecast.Add(weatherForecast);
