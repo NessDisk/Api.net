@@ -2,19 +2,22 @@ namespace Api.net.Controllers
 {
 
 using Microsoft.AspNetCore.Mvc;
+    using webapi;
 
-
-[ApiController]
+    [ApiController]
 [Route("api/[controller]")]
     public class HelloWorldController: ControllerBase
     {
          private readonly ILogger<WeatherForecastController> _logger;
+
+          TareasContext dbcontext;
+
          IHelloWorldService helloWorldService;
 
-        public HelloWorldController(ILogger<WeatherForecastController> logger, IHelloWorldService helloWorld)
+        public HelloWorldController(ILogger<WeatherForecastController> logger, IHelloWorldService helloWorld, TareasContext db)
         {       
              _logger = logger;
-
+                dbcontext = db;
                 helloWorldService = helloWorld;
         }
 
@@ -27,5 +30,15 @@ using Microsoft.AspNetCore.Mvc;
             return Ok(helloWorldService.GetHelloWorld());
 
         }
+
+        
+    [HttpGet]
+    [Route("createdb")]
+    public IActionResult CreateDatabase()
+    {
+        dbcontext.Database.EnsureCreated();
+
+        return Ok();
+    }
     }
 }
